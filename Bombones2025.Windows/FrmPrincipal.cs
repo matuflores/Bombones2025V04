@@ -29,9 +29,9 @@ namespace Bombones2025.Windows
             //PaisServicio servicio = new PaisServicio();
             IPaisServicio servicio = AppServices.ServiceProvider!
                 .GetRequiredService<IPaisServicio>();
-            IMapper mapper=AppServices.ServiceProvider!
+            IMapper mapper = AppServices.ServiceProvider!
                 .GetRequiredService<IMapper>();
-            FrmPaises frm = new FrmPaises(servicio,mapper) { Text = "Listado de Paises" };
+            FrmPaises frm = new FrmPaises(servicio, mapper) { Text = "Listado de Paises" };
             frm.ShowDialog();
 
         }
@@ -85,7 +85,25 @@ namespace Bombones2025.Windows
             IPaisServicio paisServicio = AppServices.ServiceProvider!
                 .GetRequiredService<IPaisServicio>();
             //aca luego del NEW el FRM me tiraba error lo corregi del LOAD en el codigo del FRM
-            FrmProvinciasEstados frm = new FrmProvinciasEstados(provEstadoServicio,paisServicio) { Text = "Listado de Provincias/Estados" };
+            FrmProvinciasEstados frm = new FrmProvinciasEstados(provEstadoServicio, paisServicio) { Text = "Listado de Provincias/Estados" };
+            frm.ShowDialog();
+        }
+
+        private void btnCiudades_Click(object sender, EventArgs e)
+        {
+            ICiudadServicio ciudadServicio = AppServices.ServiceProvider!
+                .GetRequiredService<ICiudadServicio>();
+            IProvinciaEstadoServicio provEstadoServicio = AppServices.ServiceProvider!
+                .GetRequiredService<IProvinciaEstadoServicio>();
+            IPaisServicio paisServicio = AppServices.ServiceProvider!
+                .GetRequiredService<IPaisServicio>();
+            IMapper mapper=AppServices.ServiceProvider!.GetRequiredService<IMapper>();
+            FrmCiudades frm = new FrmCiudades(
+                ciudadServicio,
+                provEstadoServicio, 
+                paisServicio,
+                mapper) 
+            { Text = "Listado de Ciudades" };
             frm.ShowDialog();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Bombones2025.Entidades;
+using Bombones2025.Entidades.DTOs.Ciudad;
 using Bombones2025.Entidades.DTOs.Pais;
 using Bombones2025.Entidades.DTOs.ProvinciaEstado;
 using System;
@@ -57,6 +58,13 @@ namespace Bombones2025.Windows.Helpers
                     r.Cells[1].Value = provinciaEstadoDto.NombreProvinciaEstado;
                     //r.Cells[2].Value = provinciaEstado.PaisId;
                     r.Cells[2].Value = provinciaEstadoDto.NombrePais;
+                    break;
+
+                case CiudadListDto ciudadListDto:
+                    r.Cells[0].Value = ciudadListDto.CiudadId;
+                    r.Cells[1].Value = ciudadListDto.NombreCiudad;
+                    r.Cells[2].Value = ciudadListDto.NombreProvincia;
+                    r.Cells[3].Value = ciudadListDto.NombrePais;
                     break;
             }
             r.Tag = obj;

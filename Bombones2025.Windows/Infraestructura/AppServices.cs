@@ -14,7 +14,7 @@ namespace Bombones2025.Infraestructura
 {
     public static class AppServices
     {//encargada de inyectar los servicios
-        private static IServiceProvider _serviceProvider;//INTERFAZ ME PERMITE CREAR LOS SERVICIOS QUE YO VOY A INYECTAR
+        private static IServiceProvider? _serviceProvider;//INTERFAZ ME PERMITE CREAR LOS SERVICIOS QUE YO VOY A INYECTAR
         public static void Inicializar()
         {
             var services = new ServiceCollection();
@@ -24,8 +24,8 @@ namespace Bombones2025.Infraestructura
                 options.UseSqlServer(ConfigurationManager
                     .ConnectionStrings["MiConexion"].ConnectionString);
 
-                options.EnableSensitiveDataLogging()
-                .LogTo(msg => Debug.WriteLine(msg), LogLevel.Information);
+                //options.EnableSensitiveDataLogging()
+                //.LogTo(msg => Debug.WriteLine(msg), LogLevel.Information);
             });//LE DIGO QUE TRABAJE CON sql Y QUE TRABAJE CON LA BASE DE DATO
 
 
@@ -37,6 +37,7 @@ namespace Bombones2025.Infraestructura
             services.AddScoped<ITipoDePagoRepositorio, FormaDePagoRepositorioEF>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<IProvinciaEstadoRepositorio, ProvinciaEstadoRepositorioEF>();
+            services.AddScoped<ICiudadRepositorio, CiudadRepositorioEF>();
 
             services.AddScoped<IPaisServicio, PaisServicio>();
             services.AddScoped<IChocolateServicio, ChocolateServicio>();
@@ -45,6 +46,7 @@ namespace Bombones2025.Infraestructura
             services.AddScoped<ITipoDePagoServicio, TipoDePagoServicio>();
             services.AddScoped<IUsuarioServicio, UsuarioServicio>();
             services.AddScoped<IProvinciaEstadoServicio, ProvinciaEstadoServicio>();
+            services.AddScoped<ICiudadServicio, CiudadServicio>();
 
             services.AddAutoMapper(typeof(MappingProfile).Assembly);
 

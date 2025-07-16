@@ -143,14 +143,13 @@
             // 
             // btnCiudades
             // 
-            btnCiudades.Location = new Point(60, 239);
-            btnCiudades.Margin = new Padding(3, 2, 3, 2);
+            btnCiudades.Location = new Point(60, 231);
             btnCiudades.Name = "btnCiudades";
             btnCiudades.Size = new Size(88, 38);
-            btnCiudades.TabIndex = 6;
+            btnCiudades.TabIndex = 8;
             btnCiudades.Text = "Ciudades";
             btnCiudades.UseVisualStyleBackColor = true;
-            btnCiudades.Click += btnFormasDePagos_Click;
+            btnCiudades.Click += btnCiudades_Click;
             // 
             // FrmPrincipal
             // 
@@ -158,8 +157,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(422, 302);
             ControlBox = false;
-            Controls.Add(btnProvEst);
             Controls.Add(btnCiudades);
+            Controls.Add(btnProvEst);
             Controls.Add(btnFormasDePagos);
             Controls.Add(btnOFF);
             Controls.Add(statusStrip1);

@@ -23,6 +23,7 @@ namespace Bombones2025.DatosSql
         public DbSet<Chocolate> Chocolates { get; set; }
         public DbSet<FrutoSeco> FrutosSecos { get; set; }
         public DbSet<FormaDePago> FormasDePago { get; set; }
-        public DbSet<ProvinciaEstado> ProvinciasEstados { get;set; }
+        public DbSet<ProvinciaEstado> ProvinciasEstados { get; set; }
+        public DbSet<Ciudad> Ciudades { get; set; }
     }
 }
