@@ -55,7 +55,7 @@ namespace Bombones2025.DatosSql.Repositorios
                 //VOLVIA A MOSTRAR LA LISTA! es porque me esta guardando tambien el PAIS!
                 provEstEnDb.NombreProvinciaEstado = provinciaEstado.NombreProvinciaEstado;
                 provEstEnDb.PaisId=provinciaEstado.PaisId;
-                provEstEnDb.Pais = null;//con esto lo anulo y no se guarda!
+                provEstEnDb.Pais = null;//con esto lo anulo y no se guarda!!
                 _dbContext.Entry(provEstEnDb).State=EntityState.Modified;
                 _dbContext.SaveChanges();
             }
