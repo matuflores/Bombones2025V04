@@ -1,5 +1,7 @@
-﻿using Bombones2025.DatosSql.Repositorios;
+﻿using AutoMapper;
+using Bombones2025.DatosSql.Repositorios;
 using Bombones2025.Entidades;
+using Bombones2025.Entidades.DTOs.Pais;
 using Bombones2025.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -14,21 +16,25 @@ namespace Bombones2025.Servicios.Servicios
     {
         private readonly IPaisRepositorio? _paisRepositorio;
         //traido el repo lo llamo en el ctor
-        public PaisServicio(IPaisRepositorio paisRepositorio)
+        private readonly IMapper _mapper;
+        public PaisServicio(IPaisRepositorio paisRepositorio, IMapper mapper)
         {
             //_paisRepositorio = new PaisRepositorio(ConstantesDelSistema.umbralCache);
             _paisRepositorio=paisRepositorio;
+            _mapper=mapper;
         }
 
         ////llamo a la lista del repo
-        public List<Pais> GetPais(string? textoParaFiltrar=null)
+        public List<PaisListDto> GetPais(string? textoParaFiltrar=null)
         {
-            return _paisRepositorio.GetPais(textoParaFiltrar);
+            var paises= _paisRepositorio.GetPais(textoParaFiltrar);
+            return _mapper.Map<List<PaisListDto>>(paises);
         }//traida lista desarrollo el frmPaises
 
-        public bool Agregar(Pais pais, out List<string> errores)
+        public bool Agregar(PaisEditDto paisDto, out List<string> errores)
         {
             errores = new List<string>();
+            Pais pais = _mapper.Map<Pais>(paisDto);
             if (_paisRepositorio.Existe(pais))
             {
                 errores.Add("Pais existente!");
@@ -56,9 +62,10 @@ namespace Bombones2025.Servicios.Servicios
             return true;
         }
 
-        public bool Editar(Pais pais, out List<string> errores)
+        public bool Editar(PaisEditDto paisDto, out List<string> errores)
         {
             errores = new List<string>();
+            Pais pais = _mapper.Map<Pais>(paisDto);
             if (_paisRepositorio.Existe(pais))
             {
                 errores.Add("Pais Existente!!" + Environment.NewLine + "Edicion denegada");

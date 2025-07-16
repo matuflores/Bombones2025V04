@@ -1,4 +1,5 @@
 ﻿using Bombones2025.Entidades;
+using Bombones2025.Entidades.DTOs.Pais;
 
 namespace Bombones2025.Servicios.Servicios
 {
@@ -7,9 +8,9 @@ namespace Bombones2025.Servicios.Servicios
         bool Borrar(int paisId, out List<string> errores);
         bool Existe(Pais pais);
         //List<Pais> Filtrar(string textoParaFiltrar);
-        List<Pais> GetPais(string? textoParaFiltrar=null);
-        bool Agregar(Pais pais, out List<string> errores);
-        bool Editar(Pais pais, out List<string> errores);
+        List<PaisListDto> GetPais(string? textoParaFiltrar=null);
+        bool Agregar(PaisEditDto paisDto, out List<string> errores);
+        bool Editar(PaisEditDto paisDto, out List<string> errores);
 
         //bool EstaRelacionado(int paisId);
     }

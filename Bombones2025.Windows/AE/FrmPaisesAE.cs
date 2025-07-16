@@ -1,4 +1,5 @@
 ﻿using Bombones2025.Entidades;
+using Bombones2025.Entidades.DTOs.Pais;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace Bombones2025.Windows
 {
     public partial class FrmPaisesAE : Form
     {
-        private Pais? pais;
+        private PaisEditDto? pais;
 
         public FrmPaisesAE()
         {
@@ -29,12 +30,12 @@ namespace Bombones2025.Windows
             }
         }
 
-        public Pais? GetPais()
+        public PaisEditDto? GetPais()
         {
             return pais;
         }
 
-        public void SetPais(Pais pais)
+        public void SetPais(PaisEditDto pais)
         {
             this.pais = pais;
         }
@@ -50,7 +51,7 @@ namespace Bombones2025.Windows
             {
                 if (pais == null)
                 {
-                    pais = new Pais();
+                    pais = new PaisEditDto();
                 }
                 pais.NombrePais = textBoxPais.Text;
                 DialogResult = DialogResult.OK;

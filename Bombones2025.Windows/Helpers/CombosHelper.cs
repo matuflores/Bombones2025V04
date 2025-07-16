@@ -1,5 +1,6 @@
 ﻿using Bombones2025.DatosSql.Repositorios;
 using Bombones2025.Entidades;
+using Bombones2025.Entidades.DTOs.Pais;
 using Bombones2025.Servicios.Interfaces;
 using Bombones2025.Servicios.Servicios;
 using System;
@@ -15,7 +16,7 @@ namespace Bombones2025.Windows.Helpers
         public static void CargarComboPaises(ref ComboBox cbo, IPaisServicio paisServicio)
         {
             var listaPaises = paisServicio.GetPais();
-            var defaultPais = new Pais
+            var defaultPais = new PaisListDto
             {
                 PaisId = 0,
                 NombrePais = "Selecione País"

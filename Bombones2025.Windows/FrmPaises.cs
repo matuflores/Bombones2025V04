@@ -1,4 +1,6 @@
-﻿using Bombones2025.Entidades;
+﻿using AutoMapper;
+using Bombones2025.Entidades;
+using Bombones2025.Entidades.DTOs.Pais;
 using Bombones2025.Servicios.Servicios;
 using Bombones2025.Windows.Helpers;
 using Bombones2025.Windows.Properties;
@@ -9,13 +11,16 @@ namespace Bombones2025.Windows
     {
         //llamo a servicios
         private readonly IPaisServicio _paisServicio = null!;
+        private readonly IMapper _mapper;
         //instancio la lista
-        private List<Pais> _paises = new();
+        private List<PaisListDto> _paises = new();
+
         private bool filtrarOn = false;
-        public FrmPaises(IPaisServicio paisServicio)
+        public FrmPaises(IPaisServicio paisServicio, IMapper mapper)
         {
             InitializeComponent();
             _paisServicio = paisServicio;
+            _mapper = mapper;
         }
 
         private void FrmPaises_Load(object sender, EventArgs e)
@@ -37,7 +42,7 @@ namespace Bombones2025.Windows
         private void MostrarDatosEnGrilla()
         {
             GridHelper.LimpiarGrilla(dgvPaises);
-            foreach (Pais pais in _paises)
+            foreach (PaisListDto pais in _paises)
             {
                 var r = GridHelper.ConstruirFila(dgvPaises);
 
@@ -56,15 +61,15 @@ namespace Bombones2025.Windows
             FrmPaisesAE frm = new FrmPaisesAE() { Text = "Nuevo Pais" };
             DialogResult dr = frm.ShowDialog(this);
             if (dr == DialogResult.Cancel) return;
-            Pais? pais = frm.GetPais();
-            if (pais == null) return;
+            PaisEditDto? paisEditDto = frm.GetPais();
+            if (paisEditDto == null) return;
             try
             {
-                if (_paisServicio.Agregar(pais, out var errores))
+                if (_paisServicio.Agregar(paisEditDto, out var errores))
                 {
-
+                    PaisListDto paisListDto = _mapper.Map<PaisListDto>(paisEditDto);
                     DataGridViewRow r = GridHelper.ConstruirFila(dgvPaises);
-                    GridHelper.SetearFila(r, pais);
+                    GridHelper.SetearFila(r, paisListDto);
                     GridHelper.AgregarFila(r, dgvPaises);
                     MessageBox.Show("Pais Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -121,22 +126,23 @@ namespace Bombones2025.Windows
                 return;
             }
             var r = dgvPaises.SelectedRows[0];
-            Pais? pais = (Pais)r.Tag!;
-            if (pais == null) return;
-            Pais? paisEditar = pais.Clonar();
+            PaisEditDto? paisEditDto = (PaisEditDto)r.Tag!;
+            if (paisEditDto == null) return;
+            //Pais? paisEditar = pais.Clonar();
             FrmPaisesAE frm = new FrmPaisesAE() { Text = "Editar Pais" };
-            frm.SetPais(paisEditar);
+            frm.SetPais(paisEditDto);
             DialogResult dr = frm.ShowDialog(this);
             if (dr == DialogResult.Cancel) return;
-            paisEditar = frm.GetPais();
-            if (paisEditar == null) return;
+            paisEditDto = frm.GetPais();
+            if (paisEditDto == null) return;
 
             try
             {
-                if (_paisServicio.Editar(paisEditar, out var errores))
+                if (_paisServicio.Editar(paisEditDto, out var errores))
                 {
                     //_paisServicio.Guardar(paisEditar);
-                    GridHelper.SetearFila(r, paisEditar);
+                    //PaisListDto paisListDto = _mapper.Map<PaisListDto>(paisEditDto);
+                    GridHelper.SetearFila(r, paisEditDto);
 
                     MessageBox.Show("Pais Modificado", "Mensaje",
                         MessageBoxButtons.OK,

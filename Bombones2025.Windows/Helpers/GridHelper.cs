@@ -1,4 +1,5 @@
 ﻿using Bombones2025.Entidades;
+using Bombones2025.Entidades.DTOs.Pais;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace Bombones2025.Windows.Helpers
                     r.Cells[1].Value = chocolate.Descripcion;
                     break;
 
-                case Pais pais:
+                case PaisListDto pais:
                     r.Cells[0].Value = pais.PaisId;
                     r.Cells[1].Value = pais.NombrePais;
                     break;
