@@ -93,8 +93,8 @@ namespace Bombones2025.Windows
                 return;
             }
             var r = dgvPaises.SelectedRows[0];
-            Pais paisBorrar = (Pais)r.Tag!;
-            DialogResult dr = MessageBox.Show($"¿Desea Borrar el pais {paisBorrar}",
+            PaisListDto paisBorrar = (PaisListDto)r.Tag!;
+            DialogResult dr = MessageBox.Show($"¿Desea Borrar el pais {paisBorrar.NombrePais}",
                 "Confirmar Eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.No) return;
