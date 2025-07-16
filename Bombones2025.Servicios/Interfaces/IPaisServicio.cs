@@ -12,6 +12,8 @@ namespace Bombones2025.Servicios.Servicios
         bool Agregar(PaisEditDto paisDto, out List<string> errores);
         bool Editar(PaisEditDto paisDto, out List<string> errores);
 
+        PaisEditDto? GetPorId(int paisId);
+
         //bool EstaRelacionado(int paisId);
     }
 }

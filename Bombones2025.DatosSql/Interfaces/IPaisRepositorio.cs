@@ -11,5 +11,6 @@ namespace Bombones2025.DatosSql.Repositorios
         List<Pais> GetPais(string? textoParaFiltrar=null);
         int GetCantidad();
         bool EstaRelacionado(int paisId);
+        Pais? GetPorId(int paisId);
     }
 }

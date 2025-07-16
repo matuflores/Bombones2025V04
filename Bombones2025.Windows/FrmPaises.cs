@@ -126,9 +126,10 @@ namespace Bombones2025.Windows
                 return;
             }
             var r = dgvPaises.SelectedRows[0];
-            PaisEditDto? paisEditDto = (PaisEditDto)r.Tag!;
-            if (paisEditDto == null) return;
-            //Pais? paisEditar = pais.Clonar();
+            PaisListDto? paisListDto = (PaisListDto)r.Tag!;
+            if (paisListDto == null) return;
+            PaisEditDto? paisEditDto=_paisServicio.GetPorId(paisListDto.PaisId);
+            if (paisEditDto is null) return;
             FrmPaisesAE frm = new FrmPaisesAE() { Text = "Editar Pais" };
             frm.SetPais(paisEditDto);
             DialogResult dr = frm.ShowDialog(this);
@@ -141,8 +142,8 @@ namespace Bombones2025.Windows
                 if (_paisServicio.Editar(paisEditDto, out var errores))
                 {
                     //_paisServicio.Guardar(paisEditar);
-                    //PaisListDto paisListDto = _mapper.Map<PaisListDto>(paisEditDto);
-                    GridHelper.SetearFila(r, paisEditDto);
+                    paisListDto = _mapper.Map<PaisListDto>(paisEditDto);
+                    GridHelper.SetearFila(r, paisListDto);
 
                     MessageBox.Show("Pais Modificado", "Mensaje",
                         MessageBoxButtons.OK,

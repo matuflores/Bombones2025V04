@@ -14,7 +14,7 @@ namespace Bombones2025.Servicios.Servicios
 {
     public class PaisServicio : IPaisServicio
     {
-        private readonly IPaisRepositorio? _paisRepositorio;
+        private readonly IPaisRepositorio _paisRepositorio;
         //traido el repo lo llamo en el ctor
         private readonly IMapper _mapper;
         public PaisServicio(IPaisRepositorio paisRepositorio, IMapper mapper)
@@ -78,6 +78,16 @@ namespace Bombones2025.Servicios.Servicios
         public bool EstaRelacionado(int paisId)
         {
             throw new NotImplementedException();
+        }
+
+        public PaisEditDto? GetPorId(int paisId)
+        {
+            Pais? pais= _paisRepositorio.GetPorId(paisId);
+            if (pais is null)
+            {
+                return null;
+            }
+            return _mapper.Map<PaisEditDto>(pais);
         }
 
         //public bool Existe(Pais pais)

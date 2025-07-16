@@ -77,5 +77,11 @@ namespace Bombones2025.DatosSql.Repositorios
                 : _dbContext.Paises.Where(p => p.NombrePais
                 .StartsWith(textoParaFiltrar)).AsNoTracking().ToList();
         }
+
+        public Pais? GetPorId(int paisId)
+        {
+            return _dbContext.Paises.AsNoTracking()
+                .FirstOrDefault(p => p.PaisId == paisId);//se fija si esta me trae el obj si no me trae un null
+        }
     }
 }
