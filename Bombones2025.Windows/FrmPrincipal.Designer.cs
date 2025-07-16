@@ -38,6 +38,7 @@
             btnOFF = new Button();
             btnFormasDePagos = new Button();
             btnProvEst = new Button();
+            btnCiudades = new Button();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -120,7 +121,7 @@
             // 
             // btnFormasDePagos
             // 
-            btnFormasDePagos.Location = new Point(60, 181);
+            btnFormasDePagos.Location = new Point(60, 171);
             btnFormasDePagos.Margin = new Padding(3, 2, 3, 2);
             btnFormasDePagos.Name = "btnFormasDePagos";
             btnFormasDePagos.Size = new Size(88, 38);
@@ -131,7 +132,7 @@
             // 
             // btnProvEst
             // 
-            btnProvEst.Location = new Point(263, 181);
+            btnProvEst.Location = new Point(263, 171);
             btnProvEst.Margin = new Padding(3, 2, 3, 2);
             btnProvEst.Name = "btnProvEst";
             btnProvEst.Size = new Size(88, 38);
@@ -140,6 +141,17 @@
             btnProvEst.UseVisualStyleBackColor = true;
             btnProvEst.Click += btnProvEst_Click;
             // 
+            // btnCiudades
+            // 
+            btnCiudades.Location = new Point(60, 239);
+            btnCiudades.Margin = new Padding(3, 2, 3, 2);
+            btnCiudades.Name = "btnCiudades";
+            btnCiudades.Size = new Size(88, 38);
+            btnCiudades.TabIndex = 6;
+            btnCiudades.Text = "Ciudades";
+            btnCiudades.UseVisualStyleBackColor = true;
+            btnCiudades.Click += btnFormasDePagos_Click;
+            // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -147,6 +159,7 @@
             ClientSize = new Size(422, 302);
             ControlBox = false;
             Controls.Add(btnProvEst);
+            Controls.Add(btnCiudades);
             Controls.Add(btnFormasDePagos);
             Controls.Add(btnOFF);
             Controls.Add(statusStrip1);
@@ -176,5 +189,6 @@
         private Button btnOFF;
         private Button btnFormasDePagos;
         private Button btnProvEst;
+        private Button btnCiudades;
     }
 }
