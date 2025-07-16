@@ -1,6 +1,7 @@
 ﻿using Bombones2025.DatosSql.Repositorios;
 using Bombones2025.Entidades;
 using Bombones2025.Entidades.DTOs.Pais;
+using Bombones2025.Entidades.DTOs.ProvinciaEstado;
 using Bombones2025.Servicios.Interfaces;
 using Bombones2025.Servicios.Servicios;
 using System;
@@ -25,6 +26,21 @@ namespace Bombones2025.Windows.Helpers
             cbo.DataSource = listaPaises;
             cbo.DisplayMember = "NombrePais";
             cbo.ValueMember = "PaisId";
+            cbo.SelectedIndex = 0;
+        }
+
+        public static void CargarComboProvinciasEstados(ref ComboBox cbo,int paisId, IProvinciaEstadoServicio provinciaEstadoServicio)
+        {
+            var listaProvEst = provinciaEstadoServicio.GetProvinciaEstado(paisId);
+            var defaultProvincia = new ProvinciaEstadoListDto
+            {
+                ProvinciaEstadoId = 0,
+                NombreProvinciaEstado = "Selecione Provincia/Estado"
+            };
+            listaProvEst.Insert(0, defaultProvincia);
+            cbo.DataSource = listaProvEst;
+            cbo.DisplayMember = "NombreProvinciaEstado";
+            cbo.ValueMember = "ProvinciaEstadoId";
             cbo.SelectedIndex = 0;
         }
     }

@@ -136,6 +136,7 @@
             btnNuevo.Size = new Size(50, 59);
             btnNuevo.Text = "NUEVO";
             btnNuevo.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnNuevo.Click += btnNuevo_Click;
             // 
             // btnBorrar
             // 
