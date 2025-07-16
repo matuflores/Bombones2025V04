@@ -1,4 +1,5 @@
 ﻿using Bombones2025.Entidades;
+using Bombones2025.Entidades.DTOs.ProvinciaEstado;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace Bombones2025.DatosSql.Interfaces
 {
     public interface IProvinciaEstadoRepositorio
     {
-        List<ProvinciaEstado> GetProvinciaEstados(int? paisId=null, string? textoFiltro=null);
+        //List<ProvinciaEstado> GetProvinciaEstados(int? paisId=null, string? textoFiltro=null);
+        List<ProvinciaEstado> GetProvinciaEstados(int? paisId = null, string? textoFiltro = null);
         void Agregar(ProvinciaEstado provinciaEstado);
         ProvinciaEstado? GetById(int provinciaEstadoId);
         bool Existe(ProvinciaEstado provinciaEstado);

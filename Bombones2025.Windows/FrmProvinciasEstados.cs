@@ -1,4 +1,5 @@
 ﻿using Bombones2025.Entidades;
+using Bombones2025.Entidades.DTOs.ProvinciaEstado;
 using Bombones2025.Servicios.Interfaces;
 using Bombones2025.Servicios.Servicios;
 using Bombones2025.Windows.AE;
@@ -20,7 +21,7 @@ namespace Bombones2025.Windows
     {
         private readonly IProvinciaEstadoServicio _provinciaEstadoServicio;
         private readonly IPaisServicio _paisServicio;
-        private List<ProvinciaEstado>? _provinciaEstados;
+        private List<ProvinciaEstadoListDto>? _provinciaEstados;
         private bool filtrarOn = false;
         public FrmProvinciasEstados(IProvinciaEstadoServicio provinciaEstadoServicio, IPaisServicio paisServicio)
         {
@@ -53,7 +54,7 @@ namespace Bombones2025.Windows
         private void MostrarDatosEnGrilla()
         {
             GridHelper.LimpiarGrilla(dgvProvEst);
-            foreach (ProvinciaEstado provinciaEstado in _provinciaEstados!)
+            foreach (var provinciaEstado in _provinciaEstados!)
             {
                 var r = GridHelper.ConstruirFila(dgvProvEst);
 

@@ -1,5 +1,6 @@
 ﻿using Bombones2025.DatosSql.Interfaces;
 using Bombones2025.Entidades;
+using Bombones2025.Entidades.DTOs.ProvinciaEstado;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

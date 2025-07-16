@@ -1,5 +1,6 @@
 ﻿using Bombones2025.Entidades;
 using Bombones2025.Entidades.DTOs.Pais;
+using Bombones2025.Entidades.DTOs.ProvinciaEstado;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,11 +52,11 @@ namespace Bombones2025.Windows.Helpers
                     r.Cells[1].Value = tipoDePago.Descripcion;
                     break;
 
-                case ProvinciaEstado provinciaEstado:
-                    r.Cells[0].Value = provinciaEstado.ProvinciaEstadoId;
-                    r.Cells[1].Value = provinciaEstado.NombreProvinciaEstado;
+                case ProvinciaEstadoListDto provinciaEstadoDto:
+                    r.Cells[0].Value = provinciaEstadoDto.ProvinciaEstadoId;
+                    r.Cells[1].Value = provinciaEstadoDto.NombreProvinciaEstado;
                     //r.Cells[2].Value = provinciaEstado.PaisId;
-                    r.Cells[2].Value = provinciaEstado.Pais!.NombrePais;
+                    r.Cells[2].Value = provinciaEstadoDto.NombrePais;
                     break;
             }
             r.Tag = obj;
